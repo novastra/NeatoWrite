@@ -20,7 +20,7 @@ Once it is done you just have to execute the bash file in the 'Mac_OSX' director
 The only difference between this file and the linux one come from the /dev/ path that differs. To connect and have a response on the serial port you need to use cu* and not tty* port. (More info on tty/cu for mac <a target="_blank" href="http://pbxbook.com/other/mac-tty.html">here</a>)
 
 <h3>Windows</h3>
-For Windows, first you will need to get the correct pilots here :
+For Windows, first you will need to get the drivers here :
 <ul>
 <li><a target="_blank" href="http://www.neatoroboticsupdates.com/NeatoInstaller/NeatoUpdaterToolInstaller_x86.exe">Windows 32</a></li>
 <li><a target="_blank" href="http://www.neatoroboticsupdates.com/NeatoInstaller/NeatoUpdaterToolInstaller_x64.exe">Windows 64</a></li>
@@ -38,12 +38,12 @@ For the hardware part you need a mini-usb cable, a pen and a scotch tape to fix 
 
 <h3>Software</h3>
 The script is quite simple : 
-
-It tries to get the last connected and corresponding serial port (last 10 mins) and to connect to it.
-
-It it fails you have to type the path to the port.
-
-Once it has succedeed, you have to type the string of characters you want to write.
+<ol>
+<li>It tries to get the last connected and corresponding serial port (last 10 mins) and to connect to it.</li>
+<li>It it fails you have to type the path to the port.</li>
+<li>Once it has succedeed, you type the string of characters you want to write.</li>
+<li>Once the string is written the testmode is turned to off and the script ends.</li>
+</ol>
 
 Be careful of not typing characters that are not împlemented yet. Be also warned of the fact that if you remove your usb cable before the end, the bot will not leave the TestMode correctly.
 
@@ -52,9 +52,15 @@ The full programmer's guide is available <a target="_blank" href="https://www.ne
 
 The basic instruction used to move the bot is <pre>setmotor leftWheelDistance rightWheelDistance globalSpeed</pre>
 
-To turn, the good angle will depend of the use of the two wheels. 
-If you want to make a 360° turn on the actual spot you can use :<pre>setmotor 360 -360 200</pre>
+For turning, the good angle will depend on the use of the two wheels. 
+If you want to make a 360° turn on itself you can use :<pre>setmotor 360 -360 200</pre>
 If you want to make a 360° turn to draw a circular arc you will prefer :<pre>setmotor 720 0 200</pre>
+
+<h3>Neato compatibility</h3>
+The script has been tested with :
+<ol>
+<li>Neato XV</li>
+</ol>
 
 <h3>Alphabet</h3>
 At the moment only some characters can be written : 
