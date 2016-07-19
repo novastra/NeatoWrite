@@ -1,0 +1,18 @@
+; connect neato bot
+connect '/C=4'
+
+pause 2
+
+sendln 'TestMode ON'
+
+pause 2
+
+sendln 'SetMotor 100 100 100'
+
+pause 2
+
+sendln 'SetMotor 100 100 100'
+
+pause 2
+
+sendln 'TestMode OFF'
