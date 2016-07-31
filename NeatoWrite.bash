@@ -17,10 +17,22 @@ alphabet["E"]='echo "E" && echo "setmotor 100 100 200" > "$port" && sleep 2 && e
 alphabet["F"]='echo "F" && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 500 500 200" > "$port" && sleep 2 && echo "setmotor 180 -180 200" > "$port" && sleep 2 && echo "setmotor 300 300 200" > "$port" && sleep 2 && echo "setmotor 360 -360 200" > "$port" && sleep 4 && echo "setmotor 300 300 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 250 250 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 150 150 200" > "$port" && sleep 2 && echo "setmotor 360 -360 200" > "$port" && sleep 4 && echo "setmotor 150 150 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 250 250 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 300 300 200" > "$port" && sleep 2'
 alphabet["G"]='echo "G" && echo "setmotor 500 500 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 200 200 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 200 200 200" > "$port" && sleep 2 && echo "setmotor -270 270 200" > "$port" && sleep 3 && echo "setmotor 1440 0 200" > "$port" && sleep 6 && echo "setmotor 360 -360 200" > "$port" && sleep 3 && echo "setmotor 0 1440 200" > "$port" && sleep 6 && echo "setmotor 270 -270 200" > "$port" && sleep 3 && echo "setmotor 200 200 200" > "$port" && sleep 2 && echo "setmotor 180 -180 200" > "$port" && sleep 2 && echo "setmotor 200 200 200" > "$port" && sleep 2 && echo "setmotor -180 180 200" > "$port" && sleep 2 && echo "setmotor 300 300 200" > "$port" && sleep 2'
 
-#Get the port automatically by 10min filter or allow to define manually
-if [ $(find /dev/tty* -maxdepth 1 -mmin -10) ]
+#Setting the correct path for the serial port according to the OS
+if [ $(uname -s) == "Linux" ]
 then
-	port=$(find /dev/tty* -maxdepth 1 -mmin -10)
+	portType="/dev/tty* -maxdepth 1 -mmin -10"
+elif [ $(uname -s) == "Darwin" ]
+then
+	portType="/dev/cu* -maxdepth 1 -mmin -10"
+else
+		echo "Could not find your kernel. It is not Linux nor Darwin (MacOs)."
+fi
+echo "$portType"
+
+#Get the port automatically by 10min filter or allow to define manually
+if [ $(find $portType) ]
+then
+	port=$(find $portType)
 else
 	find /dev/tty* -maxdepth 1 -mtime -1
 	read -p "Could not find the last connected port, type the full path to the port (above are the last connected):" -e port

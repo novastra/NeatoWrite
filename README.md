@@ -13,11 +13,13 @@ Just type <pre>bash NeatoWrite.bash</pre>
 <h3>MAC OSX</h3>
 OS X uses Bash 3 so you need to update your bash. 
 
-If you have brew, type this in your terminal : 
+If you have homebrew, type this in your terminal : 
 <pre>brew update && brew install bash</pre>
 Once it is done you just have to execute the bash file in the 'Mac_OSX' directory. 
 
-The only difference between this file and the linux one come from the /dev/ path that differs. To connect and have a response on the serial port you need to use cu* and not tty* port. (More info on tty/cu for mac <a target="_blank" href="http://pbxbook.com/other/mac-tty.html">here</a>)
+The only difference between mac and linux come from the /dev/ path to the port that differs. To connect and have a response on the serial port you need to use cu* and not tty* port for mac. (More info on tty/cu for mac <a target="_blank" href="http://pbxbook.com/other/mac-tty.html">here</a>)
+
+This is why the script checks the kernel first.
 
 <h3>Windows</h3>
 For Windows, first you will need to get the drivers here :
@@ -39,6 +41,7 @@ For the hardware part you need a mini-usb cable, a pen and a scotch tape to fix 
 <h3>Software</h3>
 The script is quite simple : 
 <ol>
+<li>It checks the kernel to determine the OS between Gnu-Linux and MacOS</li>
 <li>It tries to get the last connected and corresponding serial port (last 10 mins) and to connect to it.</li>
 <li>It it fails you have to type the path to the port.</li>
 <li>Once it has succedeed, you type the string of characters you want to write.</li>
@@ -64,13 +67,14 @@ The script has been tested with :
 
 <h3>Alphabet</h3>
 At the moment only some characters can be written : 
+
 A B C D E F G <del>H</del> I <del>J</del> <del>K</del> <del>L</del> M <del>N</del> O P <del>Q</del> R <del>S</del> <del>T</del> <del>U</del> <del>V</del> <del>W</del> <del>X</del> <del>Y</del> <del>Z</del>
 <del>0</del> <del>1</del> <del>2</del> <del>3</del> <del>4</del> <del>5</del> <del>6</del> <del>7</del> <del>8</del> <del>9</del> 
 
 <h3>Todo list</h3>
 <ul>
 <li>Complete the set of character that can be written</li>
-<li>Add a check on the OS at the begining to merge the GNU LINUX and MAC versions</li>
+<li><del>Add a check on the OS at the begining to merge the GNU LINUX and MAC versions</del></li>
 <li>Add the possibility to define an handicap for a wheel at the beginning (mine has to be corrected by 5° for 1° on the right wheel)</li>
 </ul>
 
